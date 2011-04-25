@@ -428,6 +428,15 @@ Then /^I should be able to access the original version of my application$/ do
   contents.close
 end
 
+Given /^I deploy my simple rack based application on AppCloud$/ do
+  @app = create_app SIMPLE_RACK_APP, @token
+  upload_app @app, @token
+  start_app @app, @token
+  expected_health = 1.0
+  health = poll_until_done @app, expected_health, @token
+  health.should == expected_health
+end
+
 # Simple Sinatra CRUD application that uses MySQL
 Given /^I deploy my simple application that is backed by the MySql database service on AppCloud$/ do
   @app = create_app SIMPLE_DB_APP, @token

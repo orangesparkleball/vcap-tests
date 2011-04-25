@@ -24,6 +24,7 @@ REDIS_LB_APP = "redis_lb_app"
 ENV_TEST_APP = "env_test_app"
 TINY_JAVA_APP = "tiny_java_app"
 SIMPLE_DB_APP = "simple_db_app"
+SIMPLE_RACK_APP = "simple_rack_app"
 BROKEN_APP = "broken_app"
 RAILS3_APP = "rails3_app"
 JPA_APP = "jpa_app"
@@ -47,6 +48,10 @@ end
 
 After("@creates_simple_db_app") do
   AppCloudHelper.instance.delete_app_internal SIMPLE_DB_APP
+end
+
+After("@creates_simple_rack_app") do
+  AppCloudHelper.instance.delete_app_internal SIMPLE_RACK_APP
 end
 
 After("@creates_redis_lb_app") do
@@ -149,6 +154,7 @@ class AppCloudHelper
     delete_app_internal(REDIS_LB_APP)
     delete_app_internal(ENV_TEST_APP)
     delete_app_internal(SIMPLE_DB_APP)
+    delete_app_internal(SIMPLE_RACK_APP)
     delete_app_internal(BROKEN_APP)
     delete_app_internal(RAILS3_APP)
     delete_app_internal(JPA_APP)
